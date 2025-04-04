@@ -27,7 +27,7 @@ The Model Context Protocol (MCP) is an open protocol that standardizes how AI ap
 1. Clone this repository:
 
 ```bash
-git clone [repository-url]
+git clone https://github.com/shaunliew/weather_mcp.git
 cd weather_mcp
 ```
 
