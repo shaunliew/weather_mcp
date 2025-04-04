@@ -12,7 +12,7 @@ The Model Context Protocol (MCP) is an open protocol that standardizes how AI ap
 - `langchain_weather.py` - Example integration with the LangChain framework
 - `smolagents_weather.py` - Example integration with the SmolAgents framework
 - `geocode.py` - Utility for converting place names to geographic coordinates
-- `requirements.txt` - Dependencies for the project
+- `pyproject.toml` - Project dependencies and configuration
 
 ## Features
 
@@ -31,19 +31,24 @@ git clone [repository-url]
 cd weather_mcp
 ```
 
-2. Create a virtual environment and activate it:
+2. Initialize and create a virtual environment with uv:
 
 ```bash
-python -m venv .venv
+# Initialize the project
+uv init
+
+# Create a virtual environment
+uv venv
+
+# Activate the virtual environment
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
-3. Install the dependencies:
+3. Install dependencies from pyproject.toml:
 
 ```bash
-pip install -r requirements.txt
-# Or with uv (recommended):
-uv pip install -r requirements.txt
+# Install all dependencies from pyproject.toml
+uv pip install .
 ```
 
 4. Set your Anthropic API key (if you don't set it, the scripts will prompt you):
@@ -139,8 +144,7 @@ Important notes:
 ### Running with LangChain
 
 ```bash
-python langchain_weather.py
-# Or with uv:
+# Run with uv
 uv run langchain_weather.py
 ```
 
@@ -149,8 +153,7 @@ Example query: "What's the weather like in San Francisco?"
 ### Running with SmolAgents
 
 ```bash
-python smolagents_weather.py
-# Or with uv:
+# Run with uv
 uv run smolagents_weather.py
 ```
 
@@ -188,6 +191,7 @@ You can use this MCP server with Claude Desktop:
 1. **301 Redirects**: If you see 301 status codes, make sure `follow_redirects=True` is set in the HTTP client
 2. **SmolAgents Integration**: Ensure you use `[*tool_collection.tools]` to properly unpack tools for SmolAgents
 3. **Security Warning**: For SmolAgents, you must acknowledge the security implications with `trust_remote_code=True`
+4. **UV Installation**: If you have issues with uv, make sure you have the latest version installed
 
 ### Getting Logs
 
@@ -201,6 +205,7 @@ tail -n 20 -f ~/Library/Logs/Claude/mcp*.log
 - [MCP Documentation](https://modelcontextprotocol.io/)
 - [LangChain Documentation](https://python.langchain.com/docs/)
 - [SmolAgents Documentation](https://huggingface.co/docs/smolagents/)
+- [UV Documentation](https://astral.sh/uv)
 
 ## Contributing
 
