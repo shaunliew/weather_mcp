@@ -2,8 +2,7 @@ import os
 import re
 import asyncio
 from mcp import StdioServerParameters
-from smolagents import CodeAgent
-from smolagents.models import AnthropicModel
+from smolagents import CodeAgent, LiteLLMModel
 from smolagents.tools import ToolCollection
 from geocode import geocode
 
@@ -15,16 +14,22 @@ async def main():
         api_key = input("ANTHROPIC_API_KEY: ")
         os.environ["ANTHROPIC_API_KEY"] = api_key
 
+    # Initialize the model
+    model = LiteLLMModel(model_id="claude-3-opus-20240229",
+                     api_key=os.environ["ANTHROPIC_API_KEY"])
+
     print("Connecting to MCP Weather server...")
-    with ToolCollection.from_mcp(
-        StdioServerParameters(command="python", args=["weather.py"])
-    ) as tool_collection:
-        print(f"Connected! Available tools: {[tool.name for tool in tool_collection]}")
+    # Setup the MCP server parameters
+    server_params = StdioServerParameters(command="python", args=["weather.py"])
+    
+    # Use the ToolCollection.from_mcp with proper unpacking of tools
+    with ToolCollection.from_mcp(server_params, trust_remote_code=True) as tool_collection:
+        print(f"Connected! Available tools: {[t.name for t in tool_collection.tools]}")
         
-        # Create a SmolAgents agent
+        # Create the agent with the properly unpacked MCP tools
         agent = CodeAgent(
-            tools=tool_collection,
-            model=AnthropicModel(model="claude-3-opus-20240229")
+            tools=[*tool_collection.tools],  # Unpack the tools properly
+            model=model
         )
         
         # Get user input for a weather question

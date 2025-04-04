@@ -11,5 +11,5 @@ dependencies = [
     "langgraph>=0.3.25",
     "mcp[cli]>=1.6.0",
     "mcpadapt>=0.0.19",
-    "smolagents>=1.13.0",
+    "smolagents[litellm]>=1.13.0",
 ]
