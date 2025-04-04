@@ -48,7 +48,7 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
 ```bash
 # Install all dependencies from pyproject.toml
-uv pip install .
+uv sync
 ```
 
 4. Set your Anthropic API key (if you don't set it, the scripts will prompt you):
@@ -206,11 +206,3 @@ tail -n 20 -f ~/Library/Logs/Claude/mcp*.log
 - [LangChain Documentation](https://python.langchain.com/docs/)
 - [SmolAgents Documentation](https://huggingface.co/docs/smolagents/)
 - [UV Documentation](https://astral.sh/uv)
-
-## Contributing
-
-Contributions are welcome! Feel free to submit a pull request or open an issue.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
