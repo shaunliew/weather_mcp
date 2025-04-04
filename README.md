@@ -7,7 +7,15 @@ This repository contains a Model Context Protocol (MCP) server that provides wea
 - `weather.py` - The MCP server implementation
 - `langchain_weather.py` - Example of using the MCP server with LangChain
 - `smolagents_weather.py` - Example of using the MCP server with SmolAgents
+- `geocode.py` - Utility for converting place names to geographic coordinates
 - `requirements.txt` - Dependencies for the project
+
+## Features
+
+- **Weather Forecasts**: Get detailed weather forecasts for any location using latitude/longitude coordinates
+- **Weather Alerts**: Check for active weather alerts in any US state
+- **Geocoding**: Convert city or location names to the required latitude/longitude coordinates automatically
+- **Framework Integration**: Examples for both LangChain and SmolAgents frameworks
 
 ## Setup
 
